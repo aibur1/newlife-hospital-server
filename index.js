@@ -102,7 +102,7 @@ async function run(){
   app.get(`/user/:email`,async(req,res)=>{
      const email=req.params.email;
     const cursor=await user.findOne({email:email})
-    let Admin=false
+    let Admin = false
     if(cursor?.roles==='admin'){
       Admin=true
     }
