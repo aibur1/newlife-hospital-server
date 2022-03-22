@@ -58,6 +58,20 @@ async function run(){
 
     // home service end
 
+      app.post(`/services`,async(req,res)=>{
+        const service=req.body;
+        console.log('hitting post api for services', service);
+        const result=await servicesCollection.insertOne(service)
+        res.json(result)
+      })
+
+      
+      // app.get(`/services`,async(req,res)=>{
+      //   const cursor=servicesCollection.find({});
+      //   const result=await cursor.toArray(service)
+      //   res.json(result)
+      // })
+
 
        //GET API
        app.get('/services', async (req, res) => {
@@ -73,10 +87,10 @@ async function run(){
         const id = req.params.id;
         console.log('getting specific service', id);
         const query = { _id: ObjectId(id) };
-        const service = await servicesCollection.findOne(query);
-        res.json(service);
+        const services = await servicesCollection.findOne(query);
+        res.json(services);
     });
-
+    
       //  user start
 
    app.post(`/user`,async(req,res)=>{
